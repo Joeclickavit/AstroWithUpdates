@@ -542,12 +542,22 @@ function openCustomFile(){
         });
 }
 
+let astroTalkWindow = null;
+
 function openAstroTalk(){
-    fetch(`https://fastly.jsdelivr.net/gh/Joeclickavit/AstrosDreamland999/astrotalk(3).html?t=${Date.now()}`)
+    const payload = { level, xp, chosen_pfp: localStorage.getItem('astro_chosen_pfp') || null };
+    fetch(`https://raw.githubusercontent.com/Joeclickavit/testur-/refs/heads/main/astrotalkoffical.html?t=${Date.now()}`)
         .then(r => r.text())
         .then(t => {
+            // Inject level data as a global before the page's own scripts run
+            const inject = '<script>window.__ASTRO_DATA__=' + JSON.stringify(payload) + ';<\/script>';
             const w = window.open('about:blank','_blank');
-            if(w){ w.document.open(); w.document.write(t); w.document.close(); }
+            if(w){
+                astroTalkWindow = w;
+                w.document.open();
+                w.document.write(t.replace('</head>', inject + '</head>'));
+                w.document.close();
+            }
         });
 }
 
@@ -745,6 +755,14 @@ function addXP(amount){
     localStorage.setItem("astro_level", level);
     localStorage.setItem("astro_xp", xp);
     updateUI();
+    // Push live update to AstroTalk if it's open
+    if(astroTalkWindow && !astroTalkWindow.closed){
+        astroTalkWindow.postMessage({
+            type: 'astro_xp_update',
+            level, xp,
+            chosen_pfp: localStorage.getItem('astro_chosen_pfp') || null
+        }, '*');
+    }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
