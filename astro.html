@@ -36,6 +36,20 @@
 
         @media (max-width:860px){.main-content{margin-left:88px;padding:18px}.logo{width:54px;height:54px}}
 
+/* EXTRAS PANEL */
+.extras-btn{background:linear-gradient(135deg,rgba(30,144,255,0.18),rgba(30,144,255,0.06));border:2px solid rgba(30,144,255,0.35);color:#6eb8ff;font-weight:800;font-size:13px;padding:7px 16px;border-radius:8px;cursor:pointer;letter-spacing:0.5px;transition:all 0.18s;}
+.extras-btn:hover{background:rgba(30,144,255,0.18);border-color:rgba(30,144,255,0.7);color:#fff;transform:translateY(-1px);}
+.extras-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.72);z-index:9997;display:none;align-items:center;justify-content:center;}
+.extras-overlay.open{display:flex;}
+.extras-modal{background:#0d0d0d;border:2px solid rgba(30,144,255,0.22);border-radius:14px;padding:26px;width:560px;max-width:94%;box-shadow:0 24px 70px rgba(0,0,0,0.9);display:flex;flex-direction:column;gap:16px;}
+.extras-modal-title{font-size:17px;font-weight:800;color:#6eb8ff;letter-spacing:1px;display:flex;align-items:center;gap:10px;margin-bottom:2px;}
+.extra-card{border-radius:10px;border:2px solid rgba(30,144,255,0.16);overflow:hidden;cursor:pointer;transition:border-color 0.18s,transform 0.18s,box-shadow 0.18s;background:#0b0b0b;}
+.extra-card:hover{border-color:rgba(30,144,255,0.55);transform:translateY(-2px);box-shadow:0 8px 28px rgba(30,144,255,0.15);}
+.extra-banner{width:100%;height:110px;display:block;pointer-events:none;}
+.extra-info{padding:10px 14px 12px;display:flex;align-items:center;justify-content:space-between;}
+.extra-label{font-weight:800;font-size:14px;color:rgba(255,255,255,0.9);}
+.extra-sub{font-size:11px;color:rgba(255,255,255,0.38);margin-top:2px;}
+.extra-arrow{font-size:18px;color:rgba(30,144,255,0.6);}
 /* SETTINGS MODAL */
 .settings-gear{background:none;border:none;cursor:pointer;font-size:20px;color:rgba(255,255,255,0.5);padding:6px;border-radius:8px;transition:all 0.15s;line-height:1;}
 .settings-gear:hover{color:var(--accent);transform:rotate(45deg);}
@@ -301,6 +315,7 @@
                 <h1>Astro's Dreamland</h1>
                 <div class="sub">🇦🇸🇹🇷🇴 ⦂🇩</div>
             </div>
+            <button class="extras-btn" onclick="document.getElementById('extrasOverlay').classList.add('open')">✦ Extras</button>
             <button class="settings-gear" onclick="document.getElementById('settingsOverlay').classList.add('open')" title="Settings">⚙️</button>
         </header>
 
@@ -325,6 +340,112 @@
         </div>
         <div class="settings-saved" id="settingsSaved">✓ Saved!</div>
     </div>
+</div>
+
+<!-- Extras Modal -->
+<div class="extras-overlay" id="extrasOverlay" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="extras-modal">
+    <div class="extras-modal-title">✦ Extras</div>
+
+    <!-- YouTube Unblocked -->
+    <div class="extra-card" onclick="window.open('https://offbeat-gold-stream-pro.base44.app/','_blank')">
+      <svg class="extra-banner" viewBox="0 0 560 110" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <linearGradient id="ytbg" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#0b0000"/>
+            <stop offset="100%" stop-color="#1a0000"/>
+          </linearGradient>
+          <filter id="ytglow"><feGaussianBlur stdDeviation="4" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        </defs>
+        <rect width="560" height="110" fill="url(#ytbg)"/>
+        <!-- scanline texture -->
+        <rect width="560" height="110" fill="url(#ytbg)" opacity="0.4"/>
+        <!-- glow orbs -->
+        <ellipse cx="80" cy="55" rx="90" ry="55" fill="rgba(255,30,30,0.09)"/>
+        <ellipse cx="480" cy="55" rx="90" ry="55" fill="rgba(255,80,30,0.07)"/>
+        <!-- play button shield -->
+        <rect x="22" y="28" width="76" height="54" rx="12" fill="rgba(255,0,0,0.85)" filter="url(#ytglow)"/>
+        <polygon points="50,42 50,68 74,55" fill="#fff"/>
+        <!-- UNBLOCKED badge -->
+        <rect x="108" y="30" width="88" height="18" rx="4" fill="rgba(255,40,40,0.22)" stroke="rgba(255,80,80,0.4)" stroke-width="1"/>
+        <text x="152" y="43" font-family="Arial Black,sans-serif" font-size="9" font-weight="900" fill="#ff6060" text-anchor="middle" letter-spacing="1.5">UNBLOCKED</text>
+        <!-- title -->
+        <text x="108" y="70" font-family="Arial Black,sans-serif" font-size="22" font-weight="900" fill="#ffffff" letter-spacing="-0.5">YouTube</text>
+        <!-- sub -->
+        <text x="109" y="87" font-family="Arial,sans-serif" font-size="10" fill="rgba(255,255,255,0.38)" letter-spacing="0.5">Fan-made unblocked player · Astro's Dreamland</text>
+        <!-- right deco lines -->
+        <line x1="430" y1="30" x2="540" y2="30" stroke="rgba(255,50,50,0.18)" stroke-width="1"/>
+        <line x1="430" y1="80" x2="540" y2="80" stroke="rgba(255,50,50,0.18)" stroke-width="1"/>
+        <text x="490" y="62" font-family="Arial Black,sans-serif" font-size="28" fill="rgba(255,30,30,0.12)" text-anchor="middle" font-weight="900">▶</text>
+      </svg>
+      <div class="extra-info">
+        <div><div class="extra-label">YouTube Unblocked might be blocked sometimes</div><div class="extra-sub">offbeat-gold-stream-pro.base44.app</div></div>
+        <div class="extra-arrow">→</div>
+      </div>
+    </div>
+
+    <!-- Minecraft Mods -->
+    <div class="extra-card" id="minecraftModsCard">
+      <svg class="extra-banner" viewBox="0 0 560 110" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <linearGradient id="mcmodsbg" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#071b0c"/>
+            <stop offset="100%" stop-color="#102b18"/>
+          </linearGradient>
+        </defs>
+        <rect width="560" height="110" fill="url(#mcmodsbg)"/>
+        <rect x="24" y="25" width="60" height="60" rx="5" fill="#4caf50" stroke="#8be28e" stroke-width="2"/>
+        <path d="M24 43h60M24 63h60M44 25v60M64 25v60" stroke="#174d26" stroke-width="3"/>
+        <text x="105" y="52" font-family="Arial Black,sans-serif" font-size="24" font-weight="900" fill="#ffffff">Minecraft Mods</text>
+        <text x="106" y="74" font-family="Arial,sans-serif" font-size="11" fill="#8be28e" letter-spacing="1">MOD STORE · ASTRO'S DREAMLAND</text>
+      </svg>
+      <div class="extra-info">
+        <div><div class="extra-label">Minecraft Mods</div><div class="extra-sub">Browse the Minecraft mod store</div></div>
+        <div class="extra-arrow">→</div>
+      </div>
+    </div>
+
+    <!-- Astro MP3 Player -->
+    <div class="extra-card" id="mp3Card">
+      <svg class="extra-banner" viewBox="0 0 560 110" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <linearGradient id="mp3bg" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#020b1a"/>
+            <stop offset="100%" stop-color="#050d22"/>
+          </linearGradient>
+          <filter id="mp3glow"><feGaussianBlur stdDeviation="4" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        </defs>
+        <rect width="560" height="110" fill="url(#mp3bg)"/>
+        <ellipse cx="70" cy="55" rx="85" ry="52" fill="rgba(30,144,255,0.08)"/>
+        <ellipse cx="490" cy="55" rx="85" ry="52" fill="rgba(0,212,255,0.06)"/>
+        <!-- disc -->
+        <circle cx="55" cy="55" r="34" fill="rgba(30,144,255,0.15)" stroke="rgba(30,144,255,0.35)" stroke-width="1.5" filter="url(#mp3glow)"/>
+        <circle cx="55" cy="55" r="22" fill="rgba(10,20,50,0.9)" stroke="rgba(30,144,255,0.2)" stroke-width="1"/>
+        <circle cx="55" cy="55" r="6" fill="rgba(30,144,255,0.7)"/>
+        <!-- sound bars -->
+        <rect x="100" y="65" width="6" height="14" rx="3" fill="rgba(30,144,255,0.5)"/>
+        <rect x="110" y="55" width="6" height="24" rx="3" fill="rgba(30,144,255,0.7)"/>
+        <rect x="120" y="48" width="6" height="31" rx="3" fill="#1e90ff"/>
+        <rect x="130" y="58" width="6" height="21" rx="3" fill="rgba(30,144,255,0.7)"/>
+        <rect x="140" y="68" width="6" height="11" rx="3" fill="rgba(30,144,255,0.5)"/>
+        <!-- title -->
+        <text x="160" y="52" font-family="Arial Black,sans-serif" font-size="20" font-weight="900" fill="#ffffff" letter-spacing="0.5">Astro MP3</text>
+        <text x="161" y="68" font-family="Arial Black,sans-serif" font-size="11" font-weight="700" fill="#00d4ff" letter-spacing="2">PLAYER</text>
+        <!-- sub -->
+        <text x="161" y="86" font-family="Arial,sans-serif" font-size="10" fill="rgba(255,255,255,0.35)" letter-spacing="0.5">Fan-made music player · Joeclickavit · GitHub</text>
+        <!-- deco right -->
+        <line x1="420" y1="35" x2="540" y2="35" stroke="rgba(30,144,255,0.15)" stroke-width="1"/>
+        <line x1="420" y1="75" x2="540" y2="75" stroke="rgba(30,144,255,0.15)" stroke-width="1"/>
+        <text x="485" y="64" font-family="Arial,sans-serif" font-size="30" fill="rgba(30,144,255,0.1)" text-anchor="middle">♪</text>
+      </svg>
+      <div class="extra-info">
+        <div><div class="extra-label">Astro MP3 Player</div><div class="extra-sub">good mp3 player 10/10 · works perfect tho</div></div>
+        <div class="extra-arrow">→</div>
+      </div>
+    </div>
+
+    <button onclick="document.getElementById('extrasOverlay').classList.remove('open')" style="background:rgba(255,255,255,0.05);border:2px solid rgba(255,255,255,0.08);color:rgba(255,255,255,0.5);font-weight:800;padding:9px;border-radius:8px;cursor:pointer;font-size:13px;margin-top:2px;">Close</button>
+  </div>
 </div>
 
 <div class="xp-container">
@@ -363,6 +484,26 @@
     </div>
 
     <script>
+        function gameUrlFor(filename){
+            const normalized = filename.toLowerCase().endsWith('.html') ? filename : filename + '.html';
+            // Encode each path segment separately so GameLoader subfolders remain valid URLs.
+            const encoded = normalized.split('/').map(encodeURIComponent).join('/');
+            const src = (window.fileSources || {})[filename] || 'ugs';
+            if(src === 'gameloader'){
+                return `https://testingcf.jsdelivr.net/gh/Joeclickavit/gameloader@${encodeURIComponent(window.gameLoaderBranch || 'main')}/${encoded}?t=${Date.now()}`;
+            }
+            return `https://testingcf.jsdelivr.net/gh/bubbls/ugs-singlefile/UGS-Files/${encoded}?t=${Date.now()}`;
+        }
+
+        // UGS declares its game list as a top-level `let files`, which is not
+        // exposed as `window.files`. Always use that real list when it exists,
+        // and fall back to window.files if the UGS list failed to load.
+        function getGameFiles() {
+            if (typeof files !== 'undefined' && Array.isArray(files)) return files;
+            if (Array.isArray(window.files)) return window.files;
+            return [];
+        }
+
         function astroGenerateSections() {
             const allChars = ['0','1','2','3','4','5','6','7','8','9',
                             'A','B','C','D','E','F','G','H','I','J','K','L','M',
@@ -373,16 +514,17 @@
                 filesByChar[char] = [];
             });
 
-            files.forEach(file => {
+            getGameFiles().forEach(file => {
                 const lower = file.toLowerCase();
+                let firstChar;
                 if (lower.startsWith('cl')) {
                     const afterCl = lower.substring(2);
-                    if (afterCl.length > 0) {
-                        const firstChar = afterCl[0].toUpperCase();
-                        if (filesByChar[firstChar]) {
-                            filesByChar[firstChar].push(file);
-                        }
-                    }
+                    if (afterCl.length > 0) firstChar = afterCl[0].toUpperCase();
+                } else {
+                    firstChar = lower[0].toUpperCase();
+                }
+                if (firstChar && filesByChar[firstChar]) {
+                    filesByChar[firstChar].push(file);
                 }
             });
 
@@ -410,21 +552,14 @@
 
                         const playBtn = document.createElement('input');
                         playBtn.type = 'button';
-                        playBtn.value = file.replace(/^cl/i,'');
+                        playBtn.value = /^cl/i.test(file) ? file.replace(/^cl/i,'') : file.replace(/\.html$/i,'');
                         playBtn.style.flex = '1';
 
                         playBtn.onclick = () => {
                             addXP(xpPerGame());
                             recordRecentGame(file);
-                            function normalizeFileName(name) {
-                                if (name.includes('.') && name.lastIndexOf('.') > 0) return name;
-                                return name + '.html';
-                            }
 
-                            const normalized = normalizeFileName(file);
-                            const encoded = encodeURIComponent(normalized);
-
-                            fetch(`https://testingcf.jsdelivr.net/gh/bubbls/ugs-singlefile/UGS-Files/${encoded}?t=${Date.now()}`)
+                            fetch(gameUrlFor(file))
                                 .then(response => response.text())
                                 .then(text => {
                                     const newWin = window.open("about:blank", "_blank");
@@ -446,15 +581,8 @@
                         downloadBtn.style.cursor = 'pointer';
 
                         downloadBtn.onclick = () => {
-                            function normalizeFileName(name) {
-                                if (name.includes('.') && name.lastIndexOf('.') > 0) return name;
-                                return name + '.html';
-                            }
-
-                            const normalized = normalizeFileName(file);
-                            const encoded = encodeURIComponent(normalized);
-
-                            fetch(`https://testingcf.jsdelivr.net/gh/bubbls/ugs-singlefile/UGS-Files/${encoded}?t=${Date.now()}`)
+                            const normalized = file.endsWith('.html') ? file : file + '.html';
+                            fetch(gameUrlFor(file))
                                 .then(response => response.text())
                                 .then(text => {
                                     const blob = new Blob([text], { type: 'text/html' });
@@ -561,6 +689,36 @@ function openAstroTalk(){
         });
 }
 
+function openMp3Player(){
+    fetch(`https://testingcf.jsdelivr.net/gh/Joeclickavit/astromp3@main/astro-mp3-player(1).html?t=${Date.now()}`)
+        .then(r => r.text())
+        .then(t => {
+            const w = window.open('about:blank','_blank');
+            if(w){ w.document.open(); w.document.write(t); w.document.close(); }
+        })
+        .catch(()=>{
+            // fallback: direct GitHub raw
+            const w = window.open('https://raw.githubusercontent.com/Joeclickavit/astromp3/main/astro-mp3-player(1).html','_blank');
+        });
+}
+document.getElementById('mp3Card').addEventListener('click', openMp3Player);
+
+function openMinecraftMods(){
+    fetch('https://cdn.jsdelivr.net/gh/Joeclickavit/astromods@main/mc_mod_store(3).html')
+        .then(r => {
+            if (!r.ok) throw new Error('Could not load Minecraft Mods');
+            return r.text();
+        })
+        .then(t => {
+            const w = window.open('about:blank', '_blank');
+            if(w){ w.document.open(); w.document.write(t); w.document.close(); }
+        })
+        .catch(() => {
+            window.open('https://cdn.jsdelivr.net/gh/Joeclickavit/astromods@main/mc_mod_store(3).html', '_blank');
+        });
+}
+document.getElementById('minecraftModsCard').addEventListener('click', openMinecraftMods);
+
 const DEFAULTS = {
     disguiseTitle:  'ParentVUE',
     disguiseFavicon:'https://va-wjccp-psv.edupoint.com/favicon.ico?regenerateSessionId=true',
@@ -619,15 +777,14 @@ searchBox.addEventListener('input', () => {
     searchResults.innerHTML = '';
     if(!q) return;
 
-    files.filter(f => f.toLowerCase().includes(q)).slice(0,100).forEach(file => {
+    getGameFiles().filter(f => String(f).toLowerCase().includes(q)).slice(0,100).forEach(file => {
         const div = document.createElement('div');
         div.className = 'search-item';
-        div.textContent = file.replace(/^cl/i,'');
+        div.textContent = file.replace(/^cl/i,'').replace(/\.html$/i,'');
         div.onclick = () => {
             if(typeof addXP === 'function') addXP(xpPerGame());
             recordRecentGame(file);
-            const normalized = file.endsWith('.html') ? file : file + '.html';
-            fetch(`https://testingcf.jsdelivr.net/gh/bubbls/ugs-singlefile/UGS-Files/${encodeURIComponent(normalized)}?t=${Date.now()}`)
+            fetch(gameUrlFor(file))
               .then(r => r.text())
               .then(t => {
                 const w = window.open('about:blank','_blank');
@@ -839,13 +996,12 @@ function renderPinnedGames(){
         card.className = 'pinned-card';
 
         const label = document.createElement('span');
-        label.textContent = '📌 ' + file.replace(/^cl/i,'');
+        label.textContent = '📌 ' + file.replace(/^cl/i,'').replace(/\.html$/i,'');
         label.style.flex = '1';
         label.style.cursor = 'pointer';
         label.onclick = () => {
             recordRecentGame(file);
-            const normalized = file.endsWith('.html') ? file : file + '.html';
-            fetch(`https://testingcf.jsdelivr.net/gh/bubbls/ugs-singlefile/UGS-Files/${encodeURIComponent(normalized)}?t=${Date.now()}`)
+            fetch(gameUrlFor(file))
                 .then(r => r.text())
                 .then(t => {
                     const w = window.open('about:blank','_blank');
@@ -897,11 +1053,10 @@ function renderRecentGames(){
     recent.forEach(file => {
         const card = document.createElement('div');
         card.className = 'recent-card';
-        card.textContent = '▶ ' + file.replace(/^cl/i,'');
+        card.textContent = '▶ ' + file.replace(/^cl/i,'').replace(/\.html$/i,'');
         card.onclick = () => {
             recordRecentGame(file);
-            const normalized = file.endsWith('.html') ? file : file + '.html';
-            fetch(`https://testingcf.jsdelivr.net/gh/bubbls/ugs-singlefile/UGS-Files/${encodeURIComponent(normalized)}?t=${Date.now()}`)
+            fetch(gameUrlFor(file))
                 .then(r => r.text())
                 .then(t => {
                     const w = window.open('about:blank','_blank');
@@ -958,14 +1113,112 @@ document.addEventListener("DOMContentLoaded", renderRecentGames);
 </script>
 
     <script>
-        // Load games.js dynamically so `files` is guaranteed to be defined before use.
+        // Track which file came from which source so clicks go to the right CDN.
+        window.fileSources = window.fileSources || {};
+        window.gameLoaderBranch = 'main';
+
+        async function fetchGameloaderFiles(callback){
+            const repoApi = 'https://api.github.com/repos/Joeclickavit/gameloader';
+            let branches = ['main', 'master'];
+
+            // Discover the repository's actual default branch rather than assuming it is main.
+            try {
+                const repoResponse = await fetch(repoApi, { cache: 'no-store' });
+                if (repoResponse.ok) {
+                    const repoData = await repoResponse.json();
+                    if (repoData.default_branch) {
+                        window.gameLoaderBranch = repoData.default_branch;
+                        branches = [repoData.default_branch, ...branches.filter(b => b !== repoData.default_branch)];
+                    }
+                }
+            } catch (error) {
+                console.warn('GameLoader: could not detect default branch; trying main/master.', error);
+            }
+
+            let lastError = null;
+            for (const branch of branches) {
+                try {
+                    const response = await fetch(`${repoApi}/git/trees/${encodeURIComponent(branch)}?recursive=1`, { cache: 'no-store' });
+                    if (!response.ok) throw new Error(`GitHub tree API returned HTTP ${response.status}`);
+                    const data = await response.json();
+                    if (!Array.isArray(data.tree)) throw new Error(data.message || 'Unexpected GitHub tree response');
+
+                    const htmlFiles = data.tree
+                        .filter(item => item.type === 'blob' && typeof item.path === 'string' && item.path.toLowerCase().endsWith('.html'))
+                        .map(item => item.path)
+                        .sort((a, b) => a.localeCompare(b));
+
+                    window.gameLoaderBranch = branch;
+                    console.log(`GameLoader: found ${htmlFiles.length} HTML files in ${branch}`);
+                    callback(htmlFiles);
+                    return;
+                } catch (error) {
+                    lastError = error;
+                }
+            }
+
+            // Last fallback: list HTML files in the repository root, so root-level games
+            // can still appear if the recursive tree endpoint is unavailable.
+            try {
+                const response = await fetch(`${repoApi}/contents/?ref=${encodeURIComponent(window.gameLoaderBranch || 'main')}`, { cache: 'no-store' });
+                if (!response.ok) throw new Error(`GitHub contents API returned HTTP ${response.status}`);
+                const entries = await response.json();
+                if (!Array.isArray(entries)) throw new Error('Unexpected GitHub contents response');
+                const rootHtmlFiles = entries
+                    .filter(item => item.type === 'file' && typeof item.name === 'string' && item.name.toLowerCase().endsWith('.html'))
+                    .map(item => item.path || item.name)
+                    .sort((a, b) => a.localeCompare(b));
+                console.log(`GameLoader: found ${rootHtmlFiles.length} root HTML files using contents fallback`);
+                callback(rootHtmlFiles);
+            } catch (error) {
+                console.error('Could not load GameLoader file list:', lastError || error);
+                callback([]);
+            }
+        }
+
+        // Add discovered GameLoader HTML files to the same array the search box
+        // and game sections read. The UGS games.js uses top-level `let files`,
+        // so mutating window.files alone would update a different array.
+        function mergeGameloaderFiles(glFiles) {
+            const gameList = getGameFiles();
+            window.files = gameList;
+
+            // Keep UGS as the preferred source for a game already in its list.
+            const seen = new Set(gameList.map(f => String(f).replace(/\.html$/i, '').toLowerCase()));
+            gameList.forEach(f => {
+                if (!window.fileSources[f]) window.fileSources[f] = 'ugs';
+            });
+
+            glFiles.forEach(f => {
+                const key = String(f).replace(/\.html$/i, '').toLowerCase();
+                if (!seen.has(key)) {
+                    gameList.push(f);
+                    window.fileSources[f] = 'gameloader';
+                    seen.add(key);
+                }
+            });
+
+            // Keep both access styles pointing at the same array.
+            window.files = gameList;
+            console.log(`GameLoader: added ${glFiles.length} HTML paths; ${gameList.length} total searchable games`);
+            astroGenerateSections();
+        }
+
+        // Load UGS games first, then automatically merge every HTML file in the
+        // configured GameLoader repository, including files in the root folder.
         (function(){
             var s = document.createElement('script');
             s.src = 'https://testingcf.jsdelivr.net/gh/bubbls/ugs-singlefile@main/games.js';
             s.onload = function(){
-                // games.js has now defined `files` and called its own generateAllSections.
-                // Re-run with Astro's full version (pins, download, cl-stripping).
-                astroGenerateSections();
+                const gameList = getGameFiles();
+                window.files = gameList;
+                gameList.forEach(f => { if (!window.fileSources[f]) window.fileSources[f] = 'ugs'; });
+                fetchGameloaderFiles(mergeGameloaderFiles);
+            };
+            s.onerror = function(){
+                console.error('Could not load the UGS games.js list; trying GameLoader only.');
+                window.files = Array.isArray(window.files) ? window.files : [];
+                fetchGameloaderFiles(mergeGameloaderFiles);
             };
             document.body.appendChild(s);
         })();
