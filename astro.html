@@ -368,6 +368,32 @@
       </div>
     </div>
 
+    <!-- Messages -->
+    <div class="extra-card" id="messagesCard">
+      <svg class="extra-banner" viewBox="0 0 560 110" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <linearGradient id="messagesbg" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#10102d"/>
+            <stop offset="100%" stop-color="#082b3a"/>
+          </linearGradient>
+          <filter id="messagesglow"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        </defs>
+        <rect width="560" height="110" fill="url(#messagesbg)"/>
+        <circle cx="54" cy="55" r="34" fill="rgba(30,144,255,0.12)" stroke="rgba(110,184,255,0.4)" stroke-width="1.5"/>
+        <path d="M31 38 Q31 31 39 31 H69 Q77 31 77 39 V58 Q77 66 69 66 H51 L39 77 V66 Q31 66 31 58 Z"
+              fill="#1e90ff" stroke="#9bd7ff" stroke-width="2" stroke-linejoin="round" filter="url(#messagesglow)"/>
+        <circle cx="45" cy="49" r="2.5" fill="#071b2b"/>
+        <circle cx="54" cy="49" r="2.5" fill="#071b2b"/>
+        <circle cx="63" cy="49" r="2.5" fill="#071b2b"/>
+        <text x="105" y="52" font-family="Arial Black,sans-serif" font-size="24" font-weight="900" fill="#ffffff">Messages</text>
+        <text x="106" y="74" font-family="Arial,sans-serif" font-size="11" fill="#8bd8ff" letter-spacing="1">CHAT · ASTRO'S DREAMLAND</text>
+      </svg>
+      <div class="extra-info">
+        <div><div class="extra-label">Messages</div><div class="extra-sub">Open Messages</div></div>
+        <div class="extra-arrow">→</div>
+      </div>
+    </div>
+
     <!-- Astro MP3 Player -->
     <div class="extra-card" id="mp3Card">
       <svg class="extra-banner" viewBox="0 0 560 110" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
@@ -687,6 +713,22 @@ function openMinecraftMods(){
 }
 document.getElementById('minecraftModsCard').addEventListener('click', openMinecraftMods);
 
+function openMessages(){
+    const url = 'https://cdn.jsdelivr.net/gh/Joeclickavit/messageskiddo@main/Messages_gcs_enhanced.html';
+    fetch(url)
+        .then(r => {
+            if (!r.ok) throw new Error('Could not load Messages');
+            return r.text();
+        })
+        .then(t => {
+            const w = window.open('about:blank', '_blank');
+            if(w){ w.document.open(); w.document.write(t); w.document.close(); }
+        })
+        .catch(() => window.open(url, '_blank'));
+}
+document.getElementById('messagesCard').addEventListener('click', openMessages);
+
+
 const DEFAULTS = {
     disguiseTitle:  'ParentVUE',
     disguiseFavicon:'https://va-wjccp-psv.edupoint.com/favicon.ico?regenerateSessionId=true',
@@ -857,7 +899,12 @@ function updateUI(){
     document.getElementById("xpFill").style.width = (xp / needed * 100) + "%";
 
     // Only auto-set pfp if user hasn't manually chosen one
-    const chosenPfp = localStorage.getItem("astro_chosen_pfp");
+    let chosenPfp = localStorage.getItem("astro_chosen_pfp");
+    // Normalize older Fastly jsDelivr profile-image URLs to the standard CDN host.
+    if(chosenPfp && chosenPfp.includes("fastly.jsdelivr.net")){
+        chosenPfp = chosenPfp.replace("fastly.jsdelivr.net", "cdn.jsdelivr.net");
+        localStorage.setItem("astro_chosen_pfp", chosenPfp);
+    }
     if(!chosenPfp){
         let currentPfp = pfpMilestones[0];
         Object.keys(pfpMilestones).forEach(m => {
@@ -904,7 +951,7 @@ document.addEventListener("DOMContentLoaded", () => {
             );
 
             if(unlocked[choice]){
-                const chosen = unlocked[choice];
+                const chosen = unlocked[choice].replace("fastly.jsdelivr.net", "cdn.jsdelivr.net");
                 localStorage.setItem("astro_chosen_pfp", chosen);
                 document.getElementById("levelPfp").src = chosen;
             }
