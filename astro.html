@@ -41,7 +41,11 @@
 .extras-btn:hover{background:rgba(30,144,255,0.18);border-color:rgba(30,144,255,0.7);color:#fff;transform:translateY(-1px);}
 .extras-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.72);z-index:9997;display:none;align-items:center;justify-content:center;}
 .extras-overlay.open{display:flex;}
-.extras-modal{background:#0d0d0d;border:2px solid rgba(30,144,255,0.22);border-radius:14px;padding:26px;width:560px;max-width:94%;box-shadow:0 24px 70px rgba(0,0,0,0.9);display:flex;flex-direction:column;gap:16px;}
+.extras-modal{background:#0d0d0d;border:2px solid rgba(30,144,255,0.22);border-radius:14px;padding:26px;width:560px;max-width:94%;max-height:88vh;overflow-y:auto;overscroll-behavior:contain;scroll-behavior:smooth;-webkit-overflow-scrolling:touch;scrollbar-width:thin;scrollbar-color:rgba(30,144,255,0.5) transparent;box-shadow:0 24px 70px rgba(0,0,0,0.9);display:flex;flex-direction:column;gap:16px;}
+.extras-modal::-webkit-scrollbar{width:8px;}
+.extras-modal::-webkit-scrollbar-thumb{background:rgba(30,144,255,0.45);border-radius:8px;}
+.extras-modal::-webkit-scrollbar-track{background:transparent;}
+.extras-modal > *{flex-shrink:0;}
 .extras-modal-title{font-size:17px;font-weight:800;color:#6eb8ff;letter-spacing:1px;display:flex;align-items:center;gap:10px;margin-bottom:2px;}
 .extra-card{border-radius:10px;border:2px solid rgba(30,144,255,0.16);overflow:hidden;cursor:pointer;transition:border-color 0.18s,transform 0.18s,box-shadow 0.18s;background:#0b0b0b;}
 .extra-card:hover{border-color:rgba(30,144,255,0.55);transform:translateY(-2px);box-shadow:0 8px 28px rgba(30,144,255,0.15);}
@@ -433,6 +437,27 @@
       </div>
     </div>
 
+    <!-- The Vee-Forum -->
+    <div class="extra-card" id="veeForumCard">
+      <svg class="extra-banner" viewBox="0 0 560 110" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <linearGradient id="veeforumbg" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#071b0c"/>
+            <stop offset="100%" stop-color="#102b18"/>
+          </linearGradient>
+        </defs>
+        <rect width="560" height="110" fill="url(#veeforumbg)"/>
+        <ellipse cx="70" cy="55" rx="85" ry="52" fill="rgba(76,175,80,0.10)"/>
+        <image href="https://cdn.jsdelivr.net/gh/Joeclickavit/VEEFORUMS123@main/Ability_on_cooldown_Sticker.webp" x="14" y="5" width="100" height="100" preserveAspectRatio="xMidYMid meet"/>
+        <text x="135" y="52" font-family="Arial Black,sans-serif" font-size="24" font-weight="900" fill="#ffffff">The Vee-Forum</text>
+        <text x="136" y="74" font-family="Arial,sans-serif" font-size="11" fill="#8be28e" letter-spacing="1">FORUM WEBSITE · ASTRO'S DREAMLAND</text>
+      </svg>
+      <div class="extra-info">
+        <div><div class="extra-label" style="color:#4caf50;">The Vee-Forum</div><div class="extra-sub">Forum Website</div></div>
+        <div class="extra-arrow" style="color:rgba(76,175,80,0.7);">→</div>
+      </div>
+    </div>
+
     <button onclick="document.getElementById('extrasOverlay').classList.remove('open')" style="background:rgba(255,255,255,0.05);border:2px solid rgba(255,255,255,0.08);color:rgba(255,255,255,0.5);font-weight:800;padding:9px;border-radius:8px;cursor:pointer;font-size:13px;margin-top:2px;">Close</button>
   </div>
 </div>
@@ -727,6 +752,20 @@ function openMessages(){
         .catch(() => window.open(url, '_blank'));
 }
 document.getElementById('messagesCard').addEventListener('click', openMessages);
+
+// The Vee-Forum
+const VEE_FORUM_URL = 'https://cdn.jsdelivr.net/gh/Joeclickavit/VEEFORUM@main/index(7).html';
+function openVeeForum(){
+    fetch(VEE_FORUM_URL + '?t=' + Date.now())
+        .then(r => { if(!r.ok) throw new Error('Could not load The Vee-Forum'); return r.text(); })
+        .then(t => {
+            const w = window.open('about:blank', '_blank');
+            if(w){ w.document.open(); w.document.write(t); w.document.close(); }
+        })
+        .catch(() => window.open(VEE_FORUM_URL, '_blank'));
+}
+document.getElementById('veeForumCard').addEventListener('click', openVeeForum);
+
 
 
 const DEFAULTS = {
